@@ -9,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AppointmentListComponent {
 
+  appointment : string = 'Take a dog for a walk' //it can be defined through the constructor
+
 }
