@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Appointment } from '../models/appointment';
 
 @Component({
   selector: 'app-appointment-list',
@@ -8,7 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './appointment-list.component.css'
 })
 export class AppointmentListComponent {
-
-  appointment : string = 'Take a dog for a walk' //it can be defined through the constructor
-
+//it can be defined through the constructor
+  appointment : Appointment = {
+    id:  1,
+    title: 'Take a dog for a walk',
+    date: new Date ('2024-03-27')
+  }  
 }
