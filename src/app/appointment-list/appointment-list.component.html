@@ -1,5 +1,5 @@
 <div>
     <input [(ngModel)]="newAppointmentTitle" placeholder="Appointment description">
     <input [(ngModel)]="newAppointmentDate" type="date" placeholder="Appointment date">
-    <p-button label="Submit"></p-button>
+    <p-button (click)="addAppointment()" label="Submit"></p-button>
 </div>
