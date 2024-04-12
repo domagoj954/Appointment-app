@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Appointment } from '../models/appointment';
 import { ButtonModule } from 'primeng/button'
 import { FormsModule } from '@angular/forms';
+import { NgFor } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-appointment-list',
   standalone: true,
-  imports: [ButtonModule, FormsModule],
+  imports: [ButtonModule, FormsModule, NgFor, DatePipe],
   templateUrl: './appointment-list.component.html',
   styleUrl: './appointment-list.component.css'
 })
@@ -16,8 +18,19 @@ export class AppointmentListComponent {
   newAppointmentDate: Date = new Date();
   appointments: Appointment[] = [];
 
-  addAppointment(){
-    alert(this.newAppointmentTitle + " " + this.newAppointmentDate)
-  }
+  addAppointment() {
+    if (this.newAppointmentTitle.trim().length && this.newAppointmentDate) {
+      let newAppointment: Appointment = {
+        id: Date.now(),
+        title: this.newAppointmentTitle,
+        date: this.newAppointmentDate
+      }
+      this.appointments.push(newAppointment)
 
+      this.newAppointmentTitle = "";
+      this.newAppointmentDate = new Date();
+
+      alert(this.appointments.length);
+    }
+  }
 }
