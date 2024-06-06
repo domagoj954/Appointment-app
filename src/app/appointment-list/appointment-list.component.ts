@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Appointment } from '../models/appointment';
-import { ButtonModule } from 'primeng/button'
+import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { DatePipe } from '@angular/common';
@@ -10,11 +10,11 @@ import { DatePipe } from '@angular/common';
   standalone: true,
   imports: [ButtonModule, FormsModule, NgFor, DatePipe],
   templateUrl: './appointment-list.component.html',
-  styleUrl: './appointment-list.component.css'
+  styleUrl: './appointment-list.component.css',
 })
 export class AppointmentListComponent {
   //it can be defined through the constructor
-  newAppointmentTitle: string = "";
+  newAppointmentTitle: string = '';
   newAppointmentDate: Date = new Date();
   appointments: Appointment[] = [];
 
@@ -23,16 +23,19 @@ export class AppointmentListComponent {
       let newAppointment: Appointment = {
         id: Date.now(),
         title: this.newAppointmentTitle,
-        date: this.newAppointmentDate
-      }
-      this.appointments.push(newAppointment)
+        date: this.newAppointmentDate,
+      };
+      this.appointments.push(newAppointment);
 
-      this.newAppointmentTitle = "";
+      this.newAppointmentTitle = '';
       this.newAppointmentDate = new Date();
+
+      localStorage.setItem('appointments', JSON.stringify(this.appointments));
     }
   }
 
   deleteAppointment(index: number) {
-    this.appointments.splice(index, 1)
+    this.appointments.splice(index, 1);
+    localStorage.setItem('appointments', JSON.stringify(this.appointments));
   }
 }
